@@ -53,7 +53,7 @@ In this task, you are going to use this tilt information from the accelerometer 
 1. Roll the device left and right to steer, with the extent of roll affecting the sharpness of turn
 2. Tilt the device forward to accelerate and backwards to brake
 
-I've provdied a Car prefab you can use for this task. You can find it in ```Assets\Standard Assets\Vehicles\Prefabs``` in the project. Once you’ve added the car into a scene, locate the ```CarUserControl``` script component and edit the code in the ```FixedUpdate``` method so that it uses the accelerometer for steering and acceleration/braking rather than the Horizontal and Vertical axes from the gamepad.
+I've provdied a Car prefab you can use for this task. You can find it in ```Prefabs``` in the ```Task 3 - Car``` folder of the project. Once you’ve added the car into a scene, locate the ```CarUserControl``` script component and edit the code in the ```FixedUpdate``` method so that it uses the accelerometer for steering and acceleration/braking rather than the Horizontal and Vertical axes from the gamepad.
 
 ## Task 4: Removing unwanted movement data from our car controller
 
@@ -75,7 +75,7 @@ To complete the task, use a low-pass filter to extract the gravity value for the
 
 In the lecture, we saw how the ‘on rails’ approach could give the user an illusion of having greater control over motion-based interactions than is actually possible to track with an accelerometer (or other sensor). With this approach, simple movement events (like average acceleration on all axes exceeding a threshold) are used to trigger animations that correspond with more complex movements that the user is instructed to make (e.g. in a game tutorial). For example, the Wii sports games use this approach to good effect.
 
-In this final task we are going to create a very simple ‘on rails’ interaction where a sharp upwards movement of the tablet causes a sword slashing animation to trigger on a character. To get started, open the scene within the ```Paladin`` folder in the Unity project. The Paladin game object in this scene has a script attached to them that contains a ‘Swing’ method that can be used to trigger a sword swinging animation.
+In this final task we are going to create a very simple ‘on rails’ interaction where a sharp upwards movement of the tablet causes a sword slashing animation to trigger on a character. To get started, open the scene within the ```Task 5 - On Rails`` folder in the Unity project. The Paladin game object in this scene has a script attached to them that contains a ```Swing``` method that can be used to trigger a sword swinging animation.
 
 To implement the on rails interaction described, we need to implement the following two steps:
 
