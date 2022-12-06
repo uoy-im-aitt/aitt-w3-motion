@@ -34,5 +34,23 @@ You may wish to include the following line in your startup method to prevent the
 Run your script and look at the three values. You should notice two things:
 
 1. The numbers change if you shake the tablet around (because its accelerating/decelerating)
-2. If the tablet is held still, the three numbers won’t read ```[0, 0, 0]``. Rather, they will read values that make up a vector pointing away from gravity (e.g. ```[0, 1, 0]```).
+2. If the tablet is held still, the three numbers won’t read ```[0, 0, 0]```. Rather, they will read values that make up a vector pointing away from gravity (e.g. ```[0, 1, 0]```).
 
+## Task 3: Tilt control of a racing car using pose
+
+One of the most common motion-based interactions we see in mobile games is tilt control. Tilt control let’s us do things like steer a car or roll a ball by reorienting a mobile device in our hand. We can implement tilt control by inferring information about the tablet’s pose from its accelerometer readings.
+
+Recall from the lecture that when an accelerometer is held still, it will read a constant 1g acceleration-vector pointing away from the center of the earth. We can use the direction of this acceleration vector to work out whether the device is tilted in a particular direction. To see this phenomenon in action, complete the simple experiment with the scene you made in the last task:
+
+1. Hold the device in your hand so that the screen is parallel with the floor/desk
+2. Tilt the device to the left and right and watch how the numbers change
+3. Tilt the device forwards and backwards and watch how the numbers change
+
+You should notice that one of the axes varies between -1.0 and 1.0 when you tilt the device left and right and another varies between -1.0 and 1.0 when you tilt forward and backwards. Notice that this data is very similar to the data we got from the analogue control stick of the gamepad using Input.GetAxis in the MPIE module last year.
+
+In this task, you are going to use this tilt information from the accelerometer to control a racing car. The racing car should be controlled in the following way when the player holds the tablet like a steering wheel:
+
+1. Roll the device left and right to steer, with the extent of roll affecting the sharpness of turn
+2. Tilt the device forward to accelerate and backwards to brake
+
+I've provdied a Car prefab you can use for this task. You can find it in ```Assets\Standard Assets\Vehicles\Prefabs``` in the project. Once you’ve added the car into a scene, locate the ```CarUserControl``` script component and edit the code in the ```FixedUpdate``` method so that it uses the accelerometer for steering and acceleration/braking rather than the Horizontal and Vertical axes from the gamepad.
