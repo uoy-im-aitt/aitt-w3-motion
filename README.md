@@ -54,3 +54,18 @@ In this task, you are going to use this tilt information from the accelerometer 
 2. Tilt the device forward to accelerate and backwards to brake
 
 I've provdied a Car prefab you can use for this task. You can find it in ```Assets\Standard Assets\Vehicles\Prefabs``` in the project. Once you’ve added the car into a scene, locate the ```CarUserControl``` script component and edit the code in the ```FixedUpdate``` method so that it uses the accelerometer for steering and acceleration/braking rather than the Horizontal and Vertical axes from the gamepad.
+
+## Task 4: Removing unwanted movement data from our car controller
+
+You might notice that the car control is a little jittery and has errors when you move the device up/down or left/right in your hands. This is because the accelerometer data senses any movements that the device makes, as well as the 1g upwards acceleration caused by gravity that we are using to infer pose.
+
+We can use a low-pass filter to remove acceleration readings caused by movements (i.e. high frequency data) and leave only the acceleration caused by gravity (i.e. low frequency data). The code below shows how to implement a simple low-pass filter in C#. This works by keeping a running average of a sensor reading over time (as the ‘gravity’ variable) and adding a proportion of that average to a proportion of the current sensor reading (the ‘x’ variable). Note that the proportion of current reading vs. averaged gravity that is used depends on the ‘sensitivity’ variable. If a larger proportion of the averaged gravity is used, the pose of the device will be less susceptible to noise from movements, but will also be less responsive due to the averaging of sensor values over time. 
+
+```
+// member variables declared at class level
+float gravity = 0.0f;
+float sensitivity = 0.1f;
+
+// code to calculate latest gravity reading for axis in update function
+gravity = ((1.0f - sensitivity) * gravity) + (sensitivity * x);
+```
