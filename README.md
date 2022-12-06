@@ -75,7 +75,7 @@ To complete the task, use a low-pass filter to extract the gravity value for the
 
 In the lecture, we saw how the ‘on rails’ approach could give the user an illusion of having greater control over motion-based interactions than is actually possible to track with an accelerometer (or other sensor). With this approach, simple movement events (like average acceleration on all axes exceeding a threshold) are used to trigger animations that correspond with more complex movements that the user is instructed to make (e.g. in a game tutorial). For example, the Wii sports games use this approach to good effect.
 
-In this final task we are going to create a very simple ‘on rails’ interaction where a sharp upwards movement of the tablet causes a sword slashing animation to trigger on a character. To get started, open the scene within the ```Task 5 - On Rails`` folder in the Unity project. The Paladin game object in this scene has a script attached to them that contains a ```Swing``` method that can be used to trigger a sword swinging animation.
+In this final task we are going to create a very simple ‘on rails’ interaction where a sharp upwards movement of the tablet causes a sword slashing animation to trigger on a character. To get started, open the scene within the ```Task 5 - On Rails``` folder in the Unity project. The Paladin game object in this scene has a script attached to them that contains a ```Swing``` method that can be used to trigger a sword swinging animation.
 
 To implement the on rails interaction described, we need to implement the following two steps:
 
