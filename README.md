@@ -69,3 +69,32 @@ float sensitivity = 0.1f;
 // code to calculate latest gravity reading for axis in update function
 gravity = ((1.0f - sensitivity) * gravity) + (sensitivity * x);
 ```
+To complete the task, use a low-pass filter to extract the gravity value for the two accelerometer axes that you are using to control the car (note: you’ll need to replicate the low pass filter code for each axis). Experiment with different sensitivity values to find a nice balance between smooth control and responsiveness for each.
+
+## Task 5: An on rails approach for sword fighting
+
+In the lecture, we saw how the ‘on rails’ approach could give the user an illusion of having greater control over motion-based interactions than is actually possible to track with an accelerometer (or other sensor). With this approach, simple movement events (like average acceleration on all axes exceeding a threshold) are used to trigger animations that correspond with more complex movements that the user is instructed to make (e.g. in a game tutorial). For example, the Wii sports games use this approach to good effect.
+
+In this final task we are going to create a very simple ‘on rails’ interaction where a sharp upwards movement of the tablet causes a sword slashing animation to trigger on a character. To get started, open the scene within the ```Paladin`` folder in the Unity project. The Paladin game object in this scene has a script attached to them that contains a ‘Swing’ method that can be used to trigger a sword swinging animation.
+
+To implement the on rails interaction described, we need to implement the following two steps:
+
+1. Check whether the tablet is currently moving upwards by looking for acceleration faster than a threshold on one of its axes
+2. If it is, play the animation using the ‘Swing’ method
+
+Implementing the interaction is a little bit more complicated than simply reading the raw acceleration values to see if the tablet is moving. Recall that our accelerometer readings include an acceleration of 1g in a direction away from the center of the earth due to gravity. Therefore, we may see acceleration on the axis we define as upwards due to gravity, even when the user hasn’t moved the tablet.
+
+There is a simple solution to this problem. In the last task, we used a low-pass filter to extract the gravity value for an accelerometer axis. By subtracting this gravity value from our current sensor reading, we can extract sensor readings that relate to movement (this is called a high-pass filter). For example, the code below shows how the saved gravity value for the x-axis (the ‘gravity’ variable) can be subtracted from the current x-axis sensor reading (the ‘x’ variable) to give the current movement on the x-axis:
+
+```
+float movement = x - gravity;
+```
+
+Implement the on rails interaction described above using a high-pass filter like the one shown above. Two additional animations are included in the Paladin character (```Kick``` and ```Shield Slash```). To complete the task, write code to trigger these animations in response to different relative movements of the tablet.
+
+## Optional Extensions
+
+If you complete all of the above tasks before the end of the practical, or would like to continue to develop your skills in your free study time, then you should consider experimenting with some of the following tasks:
+
+- Improve the control of your car racing game by lessening the reduction in sensitivity to the car’s steering that is caused as the tablet is tilted forward and back to brake or accelerate (this is a flaw in the basic implementation caused by the inability of the sensor to detect rotation around the axis of gravity).
+- Consider using changes in rotation as well as movement to better discern between different gestures when controlling the animated attacks of the Paladin character.
