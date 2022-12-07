@@ -29,7 +29,9 @@ Your next task is to display the acceleration values from the accelerometer on t
 
 You may wish to include the following line in your startup method to prevent the device from rotating when completing this and the subsequent tasks:
 
-```Screen.orientation = ScreenOrientation.LandscapeLeft;```
+```c#
+Screen.orientation = ScreenOrientation.LandscapeLeft;
+```
 
 Run your script and look at the three values. You should notice two things:
 
