@@ -64,11 +64,11 @@ You might notice that the car control is a little jittery and has errors when yo
 We can use a low-pass filter to remove acceleration readings caused by movements (i.e. high frequency data) and leave only the acceleration caused by gravity (i.e. low frequency data). The code below shows how to implement a simple low-pass filter in C#. This works by keeping a running average of a sensor reading over time (as the ‘gravity’ variable) and adding a proportion of that average to a proportion of the current sensor reading (the ‘x’ variable). Note that the proportion of current reading vs. averaged gravity that is used depends on the ‘sensitivity’ variable. If a larger proportion of the averaged gravity is used, the pose of the device will be less susceptible to noise from movements, but will also be less responsive due to the averaging of sensor values over time. 
 
 ```c#
-// member variables declared at class level
+// member variables declared at class level (i.e. put this bit at the top of your script)
 float gravity = 0.0f;
 float sensitivity = 0.1f;
 
-// code to calculate latest gravity reading for axis in update function
+// code to calculate latest gravity reading for axis in update function (put this in, e.g., the update function)
 gravity = ((1.0f - sensitivity) * gravity) + (sensitivity * x);
 ```
 To complete the task, use a low-pass filter to extract the gravity value for the two accelerometer axes that you are using to control the car (note: you’ll need to replicate the low pass filter code for each axis). Experiment with different sensitivity values to find a nice balance between smooth control and responsiveness for each.
